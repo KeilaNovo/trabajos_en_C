@@ -1,0 +1,49 @@
+#include<stdio.h>
+
+int main(int argc, char **args){
+
+	int i, j;
+	int m [100][100];
+	int sol [100][100];
+	int columna;
+	int fila;
+
+	printf("Indique de cuantas filas desea que sea su matriz:\n");
+	scanf("%d",&fila);
+	printf("Indique de cuantas columnas desea que tenga su matriz:\n");
+	scanf("%d",&columna);
+
+	printf("Se debera de introducir los datos correspondientes a la matriz deseada:\n");
+	for(i=0;i<fila;i++){
+		for (j=0; j<columna;j++){
+			printf(" Inserte el numero de la posicion%d, %d:\n",i,j);
+			scanf("%d", &m[i][j]);
+
+		}
+	}
+	printf("Esta es la matriz creada: \n");
+	for (i=0;i<fila;i++){
+		for (j=0; j<columna;j++){
+			printf("%d \t", m [i][j]);
+		}
+		printf("\n");
+	}
+
+//Creamos la matriz traspuesta
+	for (i=0; i<fila;i++){
+		for (j=0;j<columna;j++){
+			sol [j][i]= m[i][j];
+		}
+	}
+
+	printf("La matriz traspuesta es la siguiente:\n");
+		for (i=0; i<fila;i++){
+			for (j=0;j<columna;j++){
+				printf("%d \t", sol[i][j] );
+			}
+			printf("\n");
+		}
+
+	return 0;
+}
+
