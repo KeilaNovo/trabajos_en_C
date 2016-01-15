@@ -1,0 +1,25 @@
+#include<stdio.h>
+
+
+void binario (int n){
+
+	if(n!=0){
+		binario(n/2);
+		printf("%i",n%2);
+	}
+}
+
+int main(){
+
+	int num=0;
+
+	printf("Introduce un numero:\n");
+	scanf("%i",&num);
+
+	
+	binario(num);
+	printf("\n");
+
+	return 0;	
+
+}             
