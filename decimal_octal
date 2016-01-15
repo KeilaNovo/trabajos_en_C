@@ -1,0 +1,26 @@
+#include<stdio.h>
+
+
+
+void octal (int n){
+
+	if(n!=0){
+		octal(n/8);
+		printf("%i",n%8);
+	}
+}
+
+int main(){
+
+	int num=0;
+
+	printf("Introduce un numero:\n");
+	scanf("%i",&num);
+
+	
+	octal(num);
+	printf("\n");
+
+	return 0;	
+
+}
