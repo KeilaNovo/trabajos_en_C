@@ -1,0 +1,65 @@
+#include<stdio.h>
+
+void hexa (int n)
+{
+	int i=0;
+	char hexadecimal[100];
+
+	while (n!=0){
+		hexadecimal[i]=n%16;
+		n=n/16;
+		i++;
+	}
+	printf("\nHexadecimal:");
+	i--;
+	while (i>=0){
+		switch(hexadecimal[i]){
+			case 10:
+				printf("A");
+				break;
+
+			case 11:
+				printf("B");
+				break;
+
+			case 12:
+				printf("C");
+				break;
+
+			case 13:
+				printf("D");
+				break;
+
+			case 14:
+				printf("E");
+				break;
+
+			case 15:
+				printf("F");
+				break;
+
+			default:
+				printf("%d", hexadecimal[i] );
+				break;
+
+		}
+		
+		i--;
+	}
+
+}
+
+int main(){
+
+	int num=0;
+
+	printf("Introduce un numero:\n");
+	scanf("%i",&num);
+
+	
+	hexa(num);
+	printf("\n");
+
+	return 0;	
+
+}
