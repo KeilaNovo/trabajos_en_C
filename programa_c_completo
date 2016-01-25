@@ -1,0 +1,209 @@
+#include<stdio.h>
+#include<math.h>
+
+void decimal_binario(int n);
+void decimal_octal(int n);
+void decimal_hexa(int n);
+int matriz_tras();
+int orden ();
+
+int main()
+{
+	int opcion_menu;
+	int numero_uno;
+	int num=0;
+
+	printf("Opcion 1: Introducir un número en formato decimal (entre 0 y 65535) y convertirlo a los formatos: binario, octal y hexadecimal.\n");
+	printf("Opcion 2: Transponer una matriz.\n");
+//Introducir desde teclado el número de filas y columnas de la matriz, y posteriormente introducir los valores de cada una de sus posiciones. Al finalizar mostrar por pantalla la matriz transpuesta.
+	printf("Opcion 3: Ordenar 3 números introducidos desde teclado usando punteros.\n");
+//Mostrar cómo quedan los números originales y los números ordenados
+	printf("Introduzca la opcion que desea utilizar:\n");
+	scanf("%d", &opcion_menu);
+
+	switch(opcion_menu){
+
+		case 1:
+			printf("Introduzca un numero:\n");
+			scanf("%i",&num);
+			decimal_binario(num);
+			printf("\n");
+			decimal_octal(num);
+			printf("\n");
+			decimal_hexa(num);
+			printf("\n");
+			break;
+
+		case 2:
+			matriz_tras();
+			break;
+
+		case 3:
+			orden();
+			break;
+
+		default:
+			printf("La opcion introducida no es correcta, pruebe otra vez.\n");
+			break;
+
+
+	}
+
+	return 0;		
+}
+
+
+
+void decimal_binario(int n)
+{
+
+	if(n!=0 && n!= 65536){
+		decimal_binario(n/2);
+		printf("%i",n%2);
+		
+	}
+	else {
+		printf("El número introducido no cumple los parametros previstos\n");
+	}
+}
+
+void decimal_octal (int n){
+
+	if(n!=0 && n!=65536){
+		decimal_octal(n/8);
+		printf("%i",n%8);
+	}
+	else{
+		printf("El número introducido no cumple los parametros previstos\n");
+	}
+}
+
+
+void decimal_hexa (int n){
+	
+	int i=0;
+	char hexadecimal[100];
+	
+	if(n==0 | n == 65536){
+		printf("Numero no valido\n");
+		
+	}
+	while (n!=0 && n!= 65536){
+		hexadecimal[i]=n%16;
+		n=n/16;
+		i++;
+	}
+	printf("\nHexadecimal:");
+	i--;
+	while (i>=0){
+		switch(hexadecimal[i]){
+			case 10:
+				printf("A");
+				break;
+
+			case 11:
+				printf("B");
+				break;
+
+			case 12:
+				printf("C");
+				break;
+
+			case 13:
+				printf("D");
+				break;
+
+			case 14:
+				printf("E");
+				break;
+
+			case 15:
+				printf("F");
+				break;
+
+			default:
+				printf("%d", hexadecimal[i] );
+				break;
+
+		}
+		
+		i--;
+	}
+
+}
+
+int matriz_tras(){
+	int i, j;
+	int m [100][100];
+	int sol [100][100];
+	int columna;
+	int fila;
+
+	printf("Indique de cuantas filas desea que sea su matriz:\n");
+	scanf("%d",&fila);
+	printf("Indique de cuantas columnas desea que tenga su matriz:\n");
+	scanf("%d",&columna);
+
+	printf("Se debera de introducir los datos correspondientes a la matriz deseada:\n");
+	for(i=0;i<fila;i++){
+		for (j=0; j<columna;j++){
+			printf(" Inserte el numero de la posicion%d, %d:\n",i,j);
+			scanf("%d", &m[i][j]);
+
+		}
+	}
+	printf("Esta es la matriz creada: \n");
+	for (i=0;i<fila;i++){
+		for (j=0; j<columna;j++){
+			printf("%d \t", m [i][j]);
+		}
+		printf("\n");
+	}
+
+//Creamos la matriz traspuesta
+	for (i=0; i<fila;i++){
+		for (j=0;j<columna;j++){
+			sol [j][i]= m[i][j];
+		}
+	}
+
+	printf("La matriz traspuesta es la siguiente:\n");
+		for (i=0; i<fila;i++){
+			for (j=0;j<columna;j++){
+				printf("%d \t", sol[i][j] );
+			}
+			printf("\n");
+		}
+}
+
+int orden (){
+
+	int i;
+	int j;
+	int max[3];
+	int aux;
+	//int *p1;
+	//int *p2;
+
+	for(i=0;i<3;i++){
+		printf("Introduzca el numero correspondiente:\n");
+		scanf("%d",&max[i]);
+	}
+
+	//p1=&max[i];
+	//p2=&max[j];
+	
+
+	for (i=0;i<3;i++){
+		for (j=i+1;j<3;j++){
+			if (max[i]>max[j]){
+				aux =max[i];
+				max[i]=max[j];
+				max[j]=aux;
+			}
+		}
+	}
+	for (i=0;i<3;i++){
+		printf("El orden seria el siguiente:%d\n", max[i]);
+	}
+}
