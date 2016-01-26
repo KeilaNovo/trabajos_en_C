@@ -1,0 +1,47 @@
+int main() {
+	
+	int orden[10];
+	int i;
+	int j;
+	int temp;
+
+	for (i=0; i<10;i++){
+		printf("Introduzca un numero:\n");
+		scanf("%d", &orden[i]);
+	}
+
+
+	for (i=0;i<10;i++){
+		for (j=i+1;j<10;j++){
+			if (orden[i]>orden[j]){
+				temp =orden[i];
+				orden[i]=orden[j];
+				orden[j]=temp;
+			}
+		}
+	}
+
+	for (i=0;i<10;i++){
+		printf("El orden seria el siguiente:%d\n", orden[i]);
+	}
+
+	printf("\n");
+	
+	for (i=0;i<10;i++){
+		for (j=i+1;j<10;j++){
+			if (orden[i]<orden[j]){
+				temp =orden[i];
+				orden[i]=orden[j];
+				orden[j]=temp;
+			}
+		}
+	}
+
+for (i=0;i<10;i++){
+		printf("El orden seria el siguiente:%d\n", orden[i]);
+	}
+
+	return 0;
+
+
+}
