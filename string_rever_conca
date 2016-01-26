@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<string.h>
+
+
+int main () {
+	
+	char cadena [200];
+	char cadena_aux[200];
+	int largo;
+	int i;
+	int j=0;
+
+	printf("Introduzca la cadena de caracteres que desee:\n");
+	gets(cadena);
+	
+
+	while (cadena[i]!= '\0'){
+		i++;
+	}
+
+	largo=(i-1);
+	
+	for (int k=largo;k>=0;k--){
+		cadena_aux[j]=cadena[k];
+		j++;
+	}
+	printf("La cadena inversa es: %s\n", cadena_aux);
+	printf("La union de ambas cadenas es: %s\n", strcat(cadena, cadena_aux));
+
+	return 0;
+
+}
