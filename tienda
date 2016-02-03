@@ -1,0 +1,157 @@
+#include<stdio.h>
+
+void abrir(FILE *archivo);
+void escribir(FILE *archivo);
+void leer(FILE *archivo);
+void modificar(FILE *archivo);
+
+int main (){
+
+int opcion_menu;
+FILE *archivo;
+
+printf("Introduzca la opcion que desea realizar:\n");
+printf("1.Abrir un fichero.\n");
+printf("2.Escribir en un fichero.\n");
+printf("2.Leer el fichero.\n");
+printf("3.Modificar el fichero\n");
+scanf("%d", &opcion_menu);
+switch(opcion_menu){
+
+	case 1:
+		abrir(archivo);
+		break;
+	case 2:
+		escribir(archivo);
+		break;
+	case 3:
+		leer(archivo);
+		break;
+	case 4:
+		modificar(archivo);
+		break;
+
+	default:
+		printf("La opcion introducida no es valida.\n");
+
+}
+
+printf("\n");
+
+return 0;
+
+}
+
+void abrir(FILE *archivo){
+
+	 archivo=fopen ("./tienda.txt", "w");
+	 if(archivo == NULL){
+	 	printf("EL archivo no puede abrirse\n");
+	 }
+
+	 else{
+	 	printf("El archivo se ha creado correctamente\n");
+	 }
+
+	fclose(archivo);
+}
+
+
+void escribir(FILE *archivo){
+	char nombre[30];
+	int codigo;
+	int cantidad;
+	float precio;
+	float descuento;
+
+	
+	archivo=fopen("./tienda.txt", "w");
+	if(archivo==NULL){
+		printf("El archivo no puede abrirse.\n");
+	}
+
+	else{
+		printf("Ingrese el nombre del producto:\n");
+		printf("Ingrese el codigo del producto:\n");
+		printf("Ingrese la cantidad de producto en tienda:\n");
+		printf("Ingrese el precio del producto:\n");
+		printf("Ingrese el descuento asociado al producto\n");
+
+		scanf("%s %d %d  %f %f", nombre,&codigo,&cantidad,&precio,&descuento);
+
+		while (!feof(stdin)){
+			fprintf(archivo, "%s / %d / %d / %f / %f\n", nombre, codigo, cantidad, precio, descuento );
+			scanf("%s %d %d %f %f", nombre,&codigo,&cantidad,&precio,&descuento);
+		}
+		fclose(archivo);
+
+		}
+}
+
+void leer(FILE *archivo){
+
+	
+	char palabra[40];
+
+	archivo = fopen("./tienda.txt","r");
+	
+	while(feof(archivo)==0){
+		fgets (palabra,40,archivo);
+		printf("%s\n", palabra);
+	}
+	fclose(archivo);
+
+}
+
+void modificar(FILE *archivo){
+
+	
+	int opcion;
+	char nombre[30];
+	int codigo;
+	int cantidad;
+	float precio;
+	float descuento;
+
+	archivo = fopen("./tienda.txt","w");
+	printf("Realizce las modificaciones pertinentes en el registro que necesite:\n");
+	printf("1.Producto\n");
+	printf("2.Codigo\n");
+	printf("3.Cantidad\n");
+	printf("4.Precio\n");
+	printf("5.Descuento\n");
+	scanf("%d", &opcion);
+
+	switch(opcion){
+
+		case 1:
+		printf("Introduzca el nuevo producto:\n");
+		scanf("%c",nombre);
+		break;
+
+		case 2:
+			printf("Introduzca el nuevo codigo:\n");
+			scanf("%d", &codigo);
+			break;
+
+		case 3:
+			printf("Introduzca la nueva cantidad:\n");
+			scanf("%d", &cantidad);
+			break;
+
+		case 4:
+			printf("Introduzca el nuevo precio:\n");
+			scanf("%f", &precio);
+			break;
+
+		case 5:
+			printf("Introduzca el nuevo descuento asociado:\n");
+			scanf("%f", &descuento);
+			break;
+
+		default:
+			printf("No ha introducido ninguna opcion.\n");
+			break;}
+
+	fclose(archivo);
+}
